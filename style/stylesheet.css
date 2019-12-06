@@ -1,0 +1,261 @@
+@charset "utf-8";
+
+/*
+Assignment: Create a Final PHP Website
+Author: Jason Berner
+Date: 8/16/16
+Editor: Sublime Text 3
+*/
+
+/* Style the radiobuttons */
+
+
+
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: #f0f0a3;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  width: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ffffac;
+}
+
+/* Create an active/current tablink class */
+.tab button:focus {
+  background-color: #c8c881;
+}
+
+/* Create an active/current tablink class */
+.tab button:active {
+  background-color: #c8c881;
+}
+
+#btn2 {
+	float: right;
+}
+
+
+
+/* body styles */
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background-color: #e2e296;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+
+/* style for hr*/
+hr{
+	margin:8%;
+}
+
+/* style for h2 */
+h2{
+	text-align: center;
+}
+
+/* style for h3 */
+h3 {
+text-align: center;
+padding-top: 20px;
+}
+
+/* style for h4 */
+h4 {
+	margin-bottom: 0;
+}
+
+/* for assignment list */
+ol {
+	padding: 0;
+	margin: 0;
+}
+
+/* styles for headers, paragraphs */
+h3, p {
+	margin-top: 0;
+	padding-right: 15px;
+	padding-left: 15px; 
+}
+
+
+/* styles for links */
+a:link {
+	color: #000000;
+	text-decoration: none; 
+}
+a:visited {
+	color: #000;
+	text-decoration: none;
+}
+a:hover, a:active, a:focus { 
+	text-decoration: none;
+}
+
+/* styles for container */
+.container {
+	width: 90%;
+	background-color: #ffffac;
+	margin: 0 auto; 
+}
+
+/* styles for header container */
+header {
+	background-color: #007046;
+	height: 90px;
+}
+
+/* styles for area holding links relevant to this assignment */
+.sidebar0 {
+	float: left;
+	width: 50%;
+	padding-bottom: 0px;
+	background-color: #AAAABB;
+}
+
+/* styles for area holding list of assignments */
+.sidebar1 {
+	float: left;
+	width: 40%;
+	padding-bottom: 0px;
+	background-color: #ffffac;
+}
+
+/* area in middle of pages */
+.content {
+	padding: 10px 0;
+	float: left;
+	width: 50%;
+}
+
+/* area in middle of pages (wide version - used when no links on left side displayed) */
+.content_wide {
+	
+	float: right;
+	width: 56%;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+/* styles for main content area (article) */
+.content ol {
+	padding: 0 0px 0px 0px;
+}
+
+/* styles for footer */
+footer {
+	
+	background-color: #c8c881;
+	position: relative;
+	clear: both;
+}
+
+/* specify block display */
+header, article{
+	display: block;
+}
+
+label {
+	font-size: 1.25em;
+}
+
+#mapid { height: 600px;
+		 
+		 background-color: #f0f0a3;
+		}
+
+#playerInfo{
+	background-color: #f0f0a3;
+	visibility: hidden;
+	padding: 2%;
+	width: 50%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#divTournament{
+	background-color: #ffffac;
+	visibility: hidden;
+	margin: 2%;
+	margin-bottom: 2%;
+}
+
+#divCountry{
+	background-color: #ffffac;
+	visibility: hidden;
+	margin-bottom: 2%;
+}
+#imgTournament{
+	width: 20%;
+	border: 1px solid;
+	float: left;
+}
+
+#imgCountry{
+	width: 20%;
+	border: 1px solid;
+	float: right;
+}
+
+#imgPlayer{
+	width: 100%;
+	border: 1px solid;
+}
+
+#imgClub{
+	width: 30%;
+	border: 1px solid;
+	margin: 6%;
+}
+
+#imgLeague{
+	width: 30%;
+	border: 1px solid;
+	margin: 6%;
+	float: right;
+}
+
+#tblPlayer tr td {
+	line-height: 8px;
+	border: 1px solid gray;
+}
+
+#tblHeader th {
+	line-height: 10px;
+	background: #cdcda0;
+	border: 1px solid black;
+}
+#lNumber {
+	margin-right: 2%;
+}
+#lPosition {
+	margin-right: 2%;
+}
+
+#lblBirthplace {
+	margin-right: 3%;
+	margin-top: 1%;
+}
+.odd{
+	background: #f5f5c0;
+}
+
+.even{
+	background: #ffffc8;
+}
+
+.lblCombo label{
+	font-weight: normal;
+	font-size: 1em;
+}
