@@ -110,16 +110,17 @@
 
 
   <script type="text/javascript">
+  //basemap
     var mymap = L.map('mapid').setView([0, 0], 2);
           L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
               attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
               maxZoom: 18,
               id: 'mapbox.streets',
               accessToken: 'pk.eyJ1IjoiYmVybmVyamEwMSIsImEiOiJjaW16Zmg3cmkwNGd0d2tsdXV4eHB5NzA1In0.l2pc-oE1fUK2zGxT9IkugA'
-          }).addTo(mymap);
-          var mymarker = [];
-          var lat_lon = [];
-          j = 0;
+          }).addTo(mymap);//add basemap
+          var mymarker = [];//holds map points
+          var lat_lon = [];//holds latitude/longitude values
+          j = 0;//counter for each respective player on a roster
 
 
      var app = angular.module("myapp",[]);
