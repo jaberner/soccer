@@ -18,6 +18,7 @@
 
 <body>
 <div class="container"><!-- container: holds  elements -->
+<div data-ng-app="myapp" data-ng-controller="usercontroller" data-ng-init="loadTournament()">
   <div id="right_side" class="sidebar1"><!-- holds combo boxes --> 
    <h2>FIFA Tournament Rosters</h2>
        <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img src="images/soccer.jpg" id="imgCountry" alt="national flag"></div>
@@ -28,12 +29,12 @@
           <br /><label id="lPosition"></label><label id="lAge"></label><br />
           <label id="lBirthplace"></label><br />
           <label id="lClub"></label><br />
-          <label id="lLeague"></label>
+          <label id="lLeague" data-ng-repeat="x in selected">{{x.league_name}}</label>
        </div>
   <!-- end .sidebar1 --></div>
 
   <article class="content_wide"><!-- .content -->
-                <div data-ng-app="myapp" data-ng-controller="usercontroller" data-ng-init="loadTournament()"> 
+                 
                     <div data-ng-init="b_c='birthplaces'" id="divRadio">
                     <label id="lblBirthplace">
                          <input data-ng-model="b_c" type="radio" name="rdoB_C" data-ng-value="'birthplaces'" data-ng-change="chkBirthplace()" class="xRadio">
@@ -253,7 +254,7 @@
             document.getElementById("lAge").innerHTML = "Age: " + $scope.selected[0][4];
             document.getElementById("lBirthplace").innerHTML = $scope.selected[0][28] + ", " + $scope.selected[0][34];
             document.getElementById("lClub").innerHTML = $scope.selected[0][8];
-            document.getElementById("lLeague").innerHTML = $scope.selected[0][12];
+            //document.getElementById("lLeague").innerHTML = $scope.selected[0][12];
             document.getElementById('playerInfo').style.visibility = 'visible';
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
             var latlng;
