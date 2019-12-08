@@ -124,6 +124,8 @@
 
 
      var app = angular.module("myapp",[]);
+
+     //prevent data from being copied
      app.directive('stopccp', function(){
       return {
         scope: {},
@@ -134,7 +136,12 @@
         }
     };
 }); 
-     app.controller("usercontroller", function($scope, $http){  
+
+
+     //controller
+     app.controller("usercontroller", function($scope, $http){ 
+
+
           $scope.loadTournament = function(){  
                $http.get("load_tment.php")  
                .success(function(data){  
@@ -142,6 +149,8 @@
                     document.getElementById('tblPlayer').style.visibility = 'hidden';  
                })  
           }  
+
+
           $scope.loadCountry = function(){  
                $http.post("load_country.php", {'tournament_id':$scope.tournament})  
                .success(function(data){  
@@ -165,6 +174,8 @@
                     document.getElementById("imgTournament").src = "images/tournaments/" + $scope.tournament + ".jpg";
                });  
           }
+
+
           $scope.loadPlayer = function(){  
                $http.post("load_player.php", {'country_id':$scope.country, 'tournament_id':$scope.tournament})  
                .success(function(data){  
@@ -183,6 +194,8 @@
                     document.getElementById('tblPlayer').style.visibility = 'visible';
                });
           }
+
+
           $scope.clearData = function(){
             mymap.closePopup();
              if(j > 0){
@@ -191,6 +204,8 @@
                 }
              }
           }
+
+
           $scope.showData = function(){
             document.getElementById("imgCountry").src = "images/countries/" + $scope.players[0][3] + ".png";
              $scope.clearData();
@@ -207,9 +222,13 @@
              }
              $scope.zoomData();
           }
+
+
           $scope.zoomData = function(){
             mymap.fitBounds(lat_lon);  
           }
+
+
           $scope.selPlayer = function(){
             $http.post("sel_player.php", {'player_id':$scope.player, 'tournament_id':$scope.tournament})  
                .success(function(data){  
@@ -217,6 +236,8 @@
                     $scope.zoomPlayer();
                });
           }
+
+
           $scope.zoomPlayer = function(){
             if(($scope.selected).length == 0){
               mymap.closePopup();
@@ -257,11 +278,15 @@
             mymap.setView(lat_lon[index], 5);
             }  
           }
+
+
           $scope.chkClubs = function(){
             $scope.b_c = "clubs";
             $scope.player = "";
             $scope.loadPlayer();
           }
+
+
           $scope.chkBirthplace = function(){
             $scope.b_c = "birthplaces";
             $scope.player = "";
