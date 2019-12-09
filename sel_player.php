@@ -9,8 +9,8 @@
 			INNER JOIN player ON player.player_id = player_tournament.player_id
 			INNER JOIN city C2 ON club.city_id = C2.city_id
 			INNER JOIN city ON player.city_id = city.city_id
-			INNER JOIN country ON city.country_id = country.country_id
 			INNER JOIN country CN2 ON C2.country_id = CN2.country_id
+			INNER JOIN country ON city.country_id = country.country_id
 			WHERE player.player_id =".$data->player_id."
 			AND player_tournament.tournament_id =".$data->tournament_id;  
  $result = mysqli_query($connect, $query);  
