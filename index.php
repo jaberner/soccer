@@ -24,7 +24,7 @@
        <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img src="images/soccer.jpg" id="imgCountry" alt="national flag"></div>
        <hr>
        <div id="playerInfo">
-          <img src="images/soccer.jpg" id="imgPlayer" alt="player photo" ><br /><img src="images/soccer.jpg" id="imgClub" alt="club logo"><img src="images/soccer.jpg" id="imgLeague" alt="league logo"><br />
+          <img data-ng-repeat="player in selected" ng-src="{{makeUrl()}}" id="imgPlayer" alt="player photo"><br /><img src="images/soccer.jpg" id="imgClub" alt="club logo"><img src="images/soccer.jpg" id="imgLeague" alt="league logo"><br />
           <label id="lNumber" data-ng-repeat="player in selected">{{player.number}}</label><label id="lName" data-ng-repeat="player in selected">{{player.player_name}}</label>
           <br /><label id="lPosition" data-ng-repeat="player in selected">{{player.position}}</label><label data-ng-repeat="player in selected" id="lAge">{{player.age}}</label><br />
           <label id="lBirthplace" data-ng-repeat="player in selected">{{player.city_name}}, {{player.country_name}}</label><br />
@@ -244,7 +244,10 @@
               document.getElementById('playerInfo').style.visibility = 'hidden';
               return;
             }
-            document.getElementById("imgPlayer").src = "images/players/" + $scope.selected[0][20];
+            //document.getElementById("imgPlayer").src = "images/players/" + $scope.selected[0][20];
+               $scope.makeUrl = function() {
+      return "images/players/" + $scope.selected[0][20];
+    }
             document.getElementById("imgClub").src = "images/clubs/" + $scope.selected[0][10];
             document.getElementById("imgLeague").src = "images/leagues/" + $scope.selected[0][15];
             document.getElementById('playerInfo').style.visibility = 'visible';
