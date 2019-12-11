@@ -24,7 +24,7 @@
        <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img src="images/soccer.jpg" id="imgCountry" alt="national flag"></div>
        <hr>
        <div id="playerInfo">
-          <img data-ng-repeat="player in selected" ng-src="{{makeUrl()}}" id="imgPlayer" alt="player photo"><br /><img src="images/soccer.jpg" id="imgClub" alt="club logo"><img src="images/soccer.jpg" id="imgLeague" alt="league logo"><br />
+          <img data-ng-repeat="player in selected" ng-src="{{makePlayerImageUrl()}}" id="imgPlayer" alt="player photo"><br /><img data-ng-repeat="player in selected" ng-src="{{makeClubImageUrl()}}" id="imgClub" alt="club logo"><img data-ng-repeat="player in selected" ng-src="{{makeLeagueImageUrl()}}" id="imgLeague" alt="league logo"><br />
           <label id="lNumber" data-ng-repeat="player in selected">{{player.number}}</label><label id="lName" data-ng-repeat="player in selected">{{player.player_name}}</label>
           <br /><label id="lPosition" data-ng-repeat="player in selected">{{player.position}}</label><label data-ng-repeat="player in selected" id="lAge">{{player.age}}</label><br />
           <label id="lBirthplace" data-ng-repeat="player in selected">{{player.city_name}}, {{player.country_name}}</label><br />
@@ -142,8 +142,9 @@
      app.controller("usercontroller", function($scope, $http){ 
 
 
+
           $scope.loadTournament = function(){  
-               $http.get("load_tment.php")  
+               $http.get("load_tment.php") 
                .success(function(data){  
                     $scope.tournaments = data;
                     document.getElementById('tblPlayer').style.visibility = 'hidden';  
@@ -245,11 +246,8 @@
               return;
             }
             //document.getElementById("imgPlayer").src = "images/players/" + $scope.selected[0][20];
-               $scope.makeUrl = function() {
-      return "images/players/" + $scope.selected[0][20];
-    }
-            document.getElementById("imgClub").src = "images/clubs/" + $scope.selected[0][10];
-            document.getElementById("imgLeague").src = "images/leagues/" + $scope.selected[0][15];
+            //document.getElementById("imgClub").src = "images/clubs/" + $scope.selected[0][10];
+            //document.getElementById("imgLeague").src = "images/leagues/" + $scope.selected[0][15];
             document.getElementById('playerInfo').style.visibility = 'visible';
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
             var latlng;
@@ -274,6 +272,29 @@
             mymap.setView(lat_lon[index], 5);
             }  
           }
+
+
+          //Functions to construct URLs for images when player is selected (player photo, club logo, league logo)
+          //Workaround: three database tables all have same column name (image_url) - didn't find better solution (selected values are hard-coded in each image)
+          $scope.imgClubs = "images/clubs/"; //path for player images
+          $scope.imgLeagues = "images/leagues/"; //path for player images
+          $scope.imgPlayers = "images/players/"; //path for player images
+
+          $scope.makeClubImageUrl = function() {
+
+            return $scope.imgClubs + $scope.selected[0][10];
+          }
+
+          $scope.makeLeagueImageUrl = function() {
+
+            return $scope.imgLeagues + $scope.selected[0][15];
+          }
+
+          $scope.makePlayerImageUrl = function() {
+
+            return $scope.imgPlayers + $scope.selected[0][20];
+          }
+
 
 
           $scope.chkClubs = function(){
