@@ -22,7 +22,7 @@
   <div id="right_side" class="sidebar1"><!-- holds combo boxes --> 
    <h2>FIFA Tournament Rosters</h2><!-- title-->
    <!-- TOURNAMENT LOGO and NATIONAL FLAG img --> 
-       <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img data-ng-model="country" ng-src="{{makeCountryImageUrl()}}{{addFileTypeExt('.png')}}" id="imgCountry" alt="national flag"></div>
+       <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img data-ng-model="country" ng-src="{{makeCountryImageUrl('.png')}}" id="imgCountry" alt="national flag"></div>
        <hr>
        <div id="playerInfo"><!-- container on left side of screen showing pictures of players and their information --> 
           <img data-ng-repeat="player in selected" ng-src="{{makePlayerImageUrl()}}" id="imgPlayer" alt="player photo"><br /><img data-ng-repeat="player in selected" ng-src="{{makeClubImageUrl()}}" id="imgClub" alt="club logo"><img data-ng-repeat="player in selected" ng-src="{{makeLeagueImageUrl()}}" id="imgLeague" alt="league logo"><br /><!-- images of PLAYER, CLUB LOGO, LEAGUE LOGO--> 
@@ -292,14 +292,9 @@
             return $scope.imgPlayers + $scope.selected[0][20];
           }
 
-          $scope.makeCountryImageUrl = function() {//make URL for national flag images
+          $scope.makeCountryImageUrl = function(fileType) {//make URL for national flag images
 
-            return $scope.imgCountries + $scope.players[0][3];
-          }
-
-          $scope.addFileTypeExt = function(fileType) {//add file extension to a URL
-
-            return fileType;
+            return $scope.imgCountries + $scope.players[0][3] + fileType;
           }
 
 
