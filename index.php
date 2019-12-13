@@ -118,7 +118,7 @@
           }).addTo(mymap);//add basemap
           var mymarker = [];//holds map points
           var lat_lon = [];//holds latitude/longitude values
-          j = 0;//counter for each respective player on a roster
+          j = 0;//counter for the point currently displayed on the map corresponding to each respective player on a roster
 
 
      var app = angular.module("myapp",[]);
