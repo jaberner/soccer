@@ -245,9 +245,7 @@
               document.getElementById('playerInfo').style.visibility = 'hidden';
               return;
             }
-            //document.getElementById("imgPlayer").src = "images/players/" + $scope.selected[0][20];
-            //document.getElementById("imgClub").src = "images/clubs/" + $scope.selected[0][10];
-            //document.getElementById("imgLeague").src = "images/leagues/" + $scope.selected[0][15];
+            
             document.getElementById('playerInfo').style.visibility = 'visible';
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
             var latlng;
