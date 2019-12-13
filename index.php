@@ -258,14 +258,14 @@
             if($scope.b_c === "birthplaces"){
               var popup = L.popup()
               .setLatLng(latlng)
-              .setContent($scope.selected[0][17] + "<br />" + $scope.selected[0][28] + ", " + $scope.selected[0][34])
+              .setContent($scope.selected[0].player_name + "<br />" + $scope.selected[0][28] + ", " + $scope.selected[0][38])
               .openOn(mymap);
             mymap.setView(lat_lon[index], 6);
             }
             if($scope.b_c === "clubs"){
               var popup = L.popup()
               .setLatLng(latlng)
-              .setContent($scope.selected[0][17] + "<br />" + $scope.selected[0].club_name + "<br />" + $scope.selected[0][22] + ", " + $scope.selected[0][38])
+              .setContent($scope.selected[0][17] + "<br />" + $scope.selected[0].club_name + "<br />" + $scope.selected[0][22] + ", " + $scope.selected[0][34])
               .openOn(mymap);
             mymap.setView(lat_lon[index], 5);
             }  
