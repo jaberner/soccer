@@ -195,7 +195,7 @@
                });
           }
 
-
+          //clear all currently displayed map points and close pop-up window
           $scope.clearData = function(){
             mymap.closePopup();
              if(numMapPointsDisplayed > 0){
@@ -223,6 +223,7 @@
           }
 
 
+          //zooms to best show all map points that are currently displayed
           $scope.zoomData = function(){
             mymap.fitBounds(lat_lon);  
           }
@@ -299,18 +300,18 @@
           }
 
 
-
+          //switch type of map points displayed on map TO CLUB LOCATIONS (where each player plays professionally)
           $scope.chkClubs = function(){
             $scope.MapPointType = "clubs";
-            $scope.player = "";
-            $scope.loadPlayer();
+            $scope.player = "";//if player is selected, clears selection
+            $scope.loadPlayer();//show points on map for CLUB LOCATIONS
           }
 
-
+          //switch type of map points displayed on map TO BIRTHPLACES OF PLAYERS
           $scope.chkBirthplace = function(){
             $scope.MapPointType = "birthplaces";
-            $scope.player = "";
-            $scope.loadPlayer();
+            $scope.player = "";//if player is selected, clears selection
+            $scope.loadPlayer();//show points on map for BIRTHPLACES
           }
 
      });
