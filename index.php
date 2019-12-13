@@ -111,8 +111,8 @@
 
   <script type="text/javascript">
   //basemap
-    var mymap = L.map('mapid').setView([0, 0], 2);
-          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    var mymap = L.map('mapid').setView([0, 0], 2);//initialize the map with specified center and zoom
+          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {//initialize basemap
               attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
               maxZoom: 18,
               id: 'mapbox.streets',
@@ -244,8 +244,7 @@
               mymap.closePopup();
               document.getElementById('playerInfo').style.visibility = 'hidden';
               return;
-            }
-            
+            }            
             document.getElementById('playerInfo').style.visibility = 'visible';
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
             var latlng;
