@@ -118,7 +118,7 @@
           }).addTo(mymap);//add basemap
           var mymarker = [];//holds map points
           var lat_lon = [];//holds latitude/longitude values
-          j = 0;//counter for the point currently displayed on the map corresponding to each respective player on a roster
+          numMapPointsDisplayed = 0;//counter for the point currently displayed on the map corresponding to each respective player on a roster
 
 
      var app = angular.module("myapp",[]);
@@ -197,8 +197,8 @@
 
           $scope.clearData = function(){
             mymap.closePopup();
-             if(j > 0){
-                   for(i = 0; i < j; i++){
+             if(numMapPointsDisplayed > 0){
+                   for(i = 0; i < numMapPointsDisplayed; i++){
                    mymap.removeLayer(mymarker[i]);
                 }
              }
@@ -209,14 +209,14 @@
              $scope.clearData();
              for(i = 0; i < 23; i++){
                 if($scope.MapPointType === "birthplaces"){
-                  mymarker[j] = L.marker([$scope.players[i][26], $scope.players[i][27]]).addTo(mymap);
+                  mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][26], $scope.players[i][27]]).addTo(mymap);
                   lat_lon[i] = [$scope.players[i][26], $scope.players[i][27]];
               }
               if($scope.MapPointType === "clubs"){
-                  mymarker[j] = L.marker([$scope.players[i][20], $scope.players[i][21]]).addTo(mymap);
+                  mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][20], $scope.players[i][21]]).addTo(mymap);
                   lat_lon[i] = [$scope.players[i][20], $scope.players[i][21]];
               }
-                j++;
+                numMapPointsDisplayed++;
              }
              $scope.zoomData();
           }
