@@ -198,7 +198,7 @@
           $scope.clearData = function(){
             mymap.closePopup();
              if(j > 0){
-                   for(i = j - 23; i < j; i++){
+                   for(i = 0; i < j; i++){
                    mymap.removeLayer(mymarker[i]);
                 }
              }
