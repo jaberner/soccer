@@ -34,13 +34,13 @@
   <!-- end .sidebar1 --></div>
 
   <article class="content_wide"><!-- .content -->
-                    <div data-ng-init="b_c='birthplaces'" id="divRadio">
+                    <div data-ng-init="MapPointType='birthplaces'" id="divRadio">
                     <label id="lblBirthplace">
-                         <input data-ng-model="b_c" type="radio" name="radioBtnMapPointType" data-ng-value="'birthplaces'" data-ng-change="chkBirthplace()" class="xRadio">
+                         <input data-ng-model="MapPointType" type="radio" name="radioBtnMapPointType" data-ng-value="'birthplaces'" data-ng-change="chkBirthplace()" class="xRadio">
                           View Birthplaces of Players
                         </label>
                         <label id="lblClub">
-                        <input data-ng-model="b_c" type="radio" name="radioBtnMapPointType" data-ng-value="'clubs'" data-ng-change="chkClubs()" class="xRadio">
+                        <input data-ng-model="MapPointType" type="radio" name="radioBtnMapPointType" data-ng-value="'clubs'" data-ng-change="chkClubs()" class="xRadio">
                          View Club Locations
                           </label>  
                       </div> 
@@ -211,11 +211,11 @@
             document.getElementById("imgCountry").src = "images/countries/" + $scope.players[0][3] + ".png";
              $scope.clearData();
              for(i = 0; i < 23; i++){
-                if($scope.b_c === "birthplaces"){
+                if($scope.MapPointType === "birthplaces"){
                   mymarker[j] = L.marker([$scope.players[i][26], $scope.players[i][27]]).addTo(mymap);
                   lat_lon[i] = [$scope.players[i][26], $scope.players[i][27]];
               }
-              if($scope.b_c === "clubs"){
+              if($scope.MapPointType === "clubs"){
                   mymarker[j] = L.marker([$scope.players[i][20], $scope.players[i][21]]).addTo(mymap);
                   lat_lon[i] = [$scope.players[i][20], $scope.players[i][21]];
               }
@@ -248,20 +248,20 @@
             document.getElementById('playerInfo').style.visibility = 'visible';
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
             var latlng;
-            if($scope.b_c === "birthplaces"){
+            if($scope.MapPointType === "birthplaces"){
               latlng = L.latLng($scope.selected[0][31], $scope.selected[0][32]);
             }
-            if($scope.b_c === "clubs"){
+            if($scope.MapPointType === "clubs"){
               latlng = L.latLng($scope.selected[0][25], $scope.selected[0][26]);
             }
-            if($scope.b_c === "birthplaces"){
+            if($scope.MapPointType === "birthplaces"){
               var popup = L.popup()
               .setLatLng(latlng)
               .setContent($scope.selected[0].player_name + "<br />" + $scope.selected[0][28] + ", " + $scope.selected[0][38])
               .openOn(mymap);
             mymap.setView(lat_lon[index], 6);
             }
-            if($scope.b_c === "clubs"){
+            if($scope.MapPointType === "clubs"){
               var popup = L.popup()
               .setLatLng(latlng)
               .setContent($scope.selected[0][17] + "<br />" + $scope.selected[0].club_name + "<br />" + $scope.selected[0][22] + ", " + $scope.selected[0][34])
@@ -295,14 +295,14 @@
 
 
           $scope.chkClubs = function(){
-            $scope.b_c = "clubs";
+            $scope.MapPointType = "clubs";
             $scope.player = "";
             $scope.loadPlayer();
           }
 
 
           $scope.chkBirthplace = function(){
-            $scope.b_c = "birthplaces";
+            $scope.MapPointType = "birthplaces";
             $scope.player = "";
             $scope.loadPlayer();
           }
