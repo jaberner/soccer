@@ -18,67 +18,64 @@
 
 <body>
 <div class="container"><!-- container: holds  elements -->
-<div data-ng-app="myapp" data-ng-controller="usercontroller" data-ng-init="loadTournament()">
+<div data-ng-app="myapp" data-ng-controller="usercontroller" data-ng-init="loadTournament()"><!-- CONTROLLER, run code to load all tournament names from database --> 
   <div id="right_side" class="sidebar1"><!-- holds combo boxes --> 
-   <h2>FIFA Tournament Rosters</h2>
+   <h2>FIFA Tournament Rosters</h2><!-- title--> 
        <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img src="images/soccer.jpg" id="imgCountry" alt="national flag"></div>
        <hr>
-       <div id="playerInfo">
-          <img data-ng-repeat="player in selected" ng-src="{{makePlayerImageUrl()}}" id="imgPlayer" alt="player photo"><br /><img data-ng-repeat="player in selected" ng-src="{{makeClubImageUrl()}}" id="imgClub" alt="club logo"><img data-ng-repeat="player in selected" ng-src="{{makeLeagueImageUrl()}}" id="imgLeague" alt="league logo"><br />
-          <label id="lNumber" data-ng-repeat="player in selected">{{player.number}}</label><label id="lName" data-ng-repeat="player in selected">{{player.player_name}}</label>
-          <br /><label id="lPosition" data-ng-repeat="player in selected">{{player.position}}</label><label data-ng-repeat="player in selected" id="lAge">{{player.age}}</label><br />
-          <label id="lBirthplace" data-ng-repeat="player in selected">{{player.city_name}}, {{player.country_name}}</label><br />
-          <label id="lClub" data-ng-repeat="player in selected">{{player.club_name}}</label><br />
-          <label id="lLeague" data-ng-repeat="player in selected">{{player.league_name}}</label>
+       <div id="playerInfo"><!-- container on left side of screen showing pictures of players and their information --> 
+          <img data-ng-repeat="player in selected" ng-src="{{makePlayerImageUrl()}}" id="imgPlayer" alt="player photo"><br /><img data-ng-repeat="player in selected" ng-src="{{makeClubImageUrl()}}" id="imgClub" alt="club logo"><img data-ng-repeat="player in selected" ng-src="{{makeLeagueImageUrl()}}" id="imgLeague" alt="league logo"><br /><!-- images of PLAYER, CLUB LOGO, LEAGUE LOGO--> 
+          <label id="lNumber" data-ng-repeat="player in selected">{{player.number}}</label><label id="lName" data-ng-repeat="player in selected">{{player.player_name}}</label><!-- info for individual PLAYERS--> 
+          <br /><label id="lPosition" data-ng-repeat="player in selected">{{player.position}}</label><label data-ng-repeat="player in selected" id="lAge">{{player.age}}</label><br /><!-- individual PLAYER info--> 
+          <label id="lBirthplace" data-ng-repeat="player in selected">{{player.city_name}}, {{player.country_name}}</label><br /><!-- individual PLAYER info-->
+          <label id="lClub" data-ng-repeat="player in selected">{{player.club_name}}</label><br /><!-- individual PLAYER info-->
+          <label id="lLeague" data-ng-repeat="player in selected">{{player.league_name}}</label><!-- individual PLAYER info-->
        </div>
   <!-- end .sidebar1 --></div>
 
   <article class="content_wide"><!-- .content -->
-                    <div data-ng-init="MapPointType='birthplaces'" id="divRadio">
-                    <label id="lblBirthplace">
+                    <div data-ng-init="MapPointType='birthplaces'" id="divRadio"><!-- radio button with options to display points showing birthplaces of player or points showing club locations -->
+                    <label id="lblBirthplace"><!-- click to show birthplaces of players -->
                          <input data-ng-model="MapPointType" type="radio" name="radioBtnMapPointType" data-ng-value="'birthplaces'" data-ng-change="chkBirthplace()" class="xRadio">
                           View Birthplaces of Players
                         </label>
-                        <label id="lblClub">
+                        <label id="lblClub"><!-- click to show club locations of players -->
                         <input data-ng-model="MapPointType" type="radio" name="radioBtnMapPointType" data-ng-value="'clubs'" data-ng-change="chkClubs()" class="xRadio">
                          View Club Locations
                           </label>  
                       </div> 
                   
                     <br /> 
-                     <select name="tournament" data-ng-model="tournament" class="form-control" data-ng-change="loadCountry()">  
+                     <select name="tournament" data-ng-model="tournament" class="form-control" data-ng-change="loadCountry()"><!-- select TOURNAMENT combo box --> 
                           <option value="">Select Tournament</option>  
-                          <option data-ng-repeat="tournament in tournaments" value="{{tournament.tournament_id}}">{{tournament.tournament_name}}</option>  
+                          <option data-ng-repeat="tournament in tournaments" value="{{tournament.tournament_id}}">{{tournament.tournament_name}}</option><!-- load NATIONAL TEAMS for selected TOURNAMENT -->  
                      </select>  
                      <br />
                      
                      
-                     <select name="country" data-ng-model="country" class="form-control" data-ng-change="loadPlayer();" id="sCountry">  
+                     <select name="country" data-ng-model="country" class="form-control" data-ng-change="loadPlayer();" id="sCountry"><!-- select NATIONAL TEAM combo box --> 
                           <option value="">Select Country</option>  
-                          <option data-ng-repeat="country in countries" value="{{country.country_id}}">  
-                               {{country.country_name}}  
-                          </option>  
+                          <option data-ng-repeat="country in countries" value="{{country.country_id}}">{{country.country_name}}</option><!-- load PLAYERS for selected NATIONAL TEAM --> 
                      </select>
                      <br />
-                     <select name="player" data-ng-model="player" class="form-control" data-ng-change="selPlayer()" id="sPlayer">  
+
+                     <select name="player" data-ng-model="player" class="form-control" data-ng-change="selPlayer()" id="sPlayer"><!-- select PLAYER combo box --> 
                           <option value="">Select Player</option>  
-                          <option data-ng-repeat="player in players" value="{{player.player_id}}">  
-                               {{player.player_name}}  
-                          </option>  
+                          <option data-ng-repeat="player in players" value="{{player.player_id}}">{{player.player_name}}</option><!-- load ROSTER for selected NATIONAL TEAM --> 
                      </select>
 
-                     <div class="tab">
-                        <button ng-click="page='first'">Map View</button>
-                        <button ng-click="page='second'" class="tab" id="btn2">Table View</button>
+                     <div class="tab"><!-- select to either display MAP OR TABLE showing roster information --> 
+                        <button ng-click="page='first'">Map View</button><!-- show MAP --> 
+                        <button ng-click="page='second'" class="tab" id="btn2">Table View</button><!-- show TABLE--> 
                     </div>
 
                     <div ng-init="page='first'"></div>
   
                     <div id="mapid" ng-show="page === 'first'"></div>
                     
-                    <div id="table_div" ng-show="page === 'second'">
+                    <div id="table_div" ng-show="page === 'second'"><!-- table showing roster informaion --> 
                        <table id="tblPlayer" class="table table-bordered" stopccp>  
-                            <tr id="tblHeader">  
+                            <tr id="tblHeader">  <!-- headers --> 
                                  <th>Number</th>  
                                  <th>Player</th>
                                  <th>Position</th>
@@ -89,7 +86,7 @@
                                  <th>League</th>
                                  <th>Division</th>
                             </tr>  
-                            <tr data-ng-repeat="x in players" data-ng-click="" data-ng-class-odd="'odd'" data-ng-class-even="'even'">  
+                            <tr data-ng-repeat="x in players" data-ng-click="" data-ng-class-odd="'odd'" data-ng-class-even="'even'"><!-- table data --> 
                                  <td >{{x.number}}</td>  
                                  <td >{{x.player_name}}</td>
                                  <td >{{x.position}}</td>
@@ -110,7 +107,7 @@
 
 
   <script type="text/javascript">
-  //basemap
+  //LEAFLET basemap
     var mymap = L.map('mapid').setView([0, 0], 2);//initialize the map with specified center and zoom
           L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {//initialize basemap
               attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
