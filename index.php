@@ -279,17 +279,17 @@
 
           $scope.makeClubImageUrl = function() {//make URL for club logos
 
-            return $scope.imgClubs + $scope.selected[0][10];
+            return $scope.imgClubs + $scope.selected[0].club_id;
           }
 
           $scope.makeLeagueImageUrl = function() {//make URL for league logos
 
-            return $scope.imgLeagues + $scope.selected[0][15];
+            return $scope.imgLeagues + $scope.selected[0].league_id;
           }
 
           $scope.makePlayerImageUrl = function() {//make URL for player images
 
-            return $scope.imgPlayers + $scope.selected[0][20];
+            return $scope.imgPlayers + $scope.selected[0].player_id;
           }
 
           $scope.makeCountryImageUrl = function(fileType) {//make URL for national flag images
