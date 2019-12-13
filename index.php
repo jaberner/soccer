@@ -20,7 +20,8 @@
 <div class="container"><!-- container: holds  elements -->
 <div data-ng-app="myapp" data-ng-controller="usercontroller" data-ng-init="loadTournament()"><!-- CONTROLLER, run code to load all tournament names from database --> 
   <div id="right_side" class="sidebar1"><!-- holds combo boxes --> 
-   <h2>FIFA Tournament Rosters</h2><!-- title--> 
+   <h2>FIFA Tournament Rosters</h2><!-- title-->
+   <!-- TOURNAMENT LOGO and NATIONAL FLAG img --> 
        <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img src="images/soccer.jpg" id="imgCountry" alt="national flag"></div>
        <hr>
        <div id="playerInfo"><!-- container on left side of screen showing pictures of players and their information --> 
