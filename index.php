@@ -119,6 +119,7 @@
           var mymarker = [];//holds map points
           var lat_lon = [];//holds latitude/longitude values
           numMapPointsDisplayed = 0;//counter for the point currently displayed on the map corresponding to each respective player on a roster
+          numPlayersRoster = 23;//total number of players on each team
 
 
      var app = angular.module("myapp",[]);
@@ -207,7 +208,7 @@
 
           $scope.showData = function(){
              $scope.clearData();
-             for(i = 0; i < 23; i++){
+             for(i = 0; i < numPlayersRoster; i++){
                 if($scope.MapPointType === "birthplaces"){
                   mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][26], $scope.players[i][27]]).addTo(mymap);
                   lat_lon[i] = [$scope.players[i][26], $scope.players[i][27]];
