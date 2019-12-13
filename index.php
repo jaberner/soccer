@@ -22,7 +22,7 @@
   <div id="right_side" class="sidebar1"><!-- holds combo boxes --> 
    <h2>FIFA Tournament Rosters</h2><!-- title-->
    <!-- TOURNAMENT LOGO and NATIONAL FLAG img --> 
-       <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img src="images/soccer.jpg" id="imgCountry" alt="national flag"></div>
+       <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img data-ng-model="country" ng-src="{{makeCountryImageUrl()}}{{addFileTypeExt('.png')}}" id="imgCountry" alt="national flag"></div>
        <hr>
        <div id="playerInfo"><!-- container on left side of screen showing pictures of players and their information --> 
           <img data-ng-repeat="player in selected" ng-src="{{makePlayerImageUrl()}}" id="imgPlayer" alt="player photo"><br /><img data-ng-repeat="player in selected" ng-src="{{makeClubImageUrl()}}" id="imgClub" alt="club logo"><img data-ng-repeat="player in selected" ng-src="{{makeLeagueImageUrl()}}" id="imgLeague" alt="league logo"><br /><!-- images of PLAYER, CLUB LOGO, LEAGUE LOGO--> 
@@ -206,7 +206,6 @@
 
 
           $scope.showData = function(){
-            document.getElementById("imgCountry").src = "images/countries/" + $scope.players[0][3] + ".png";
              $scope.clearData();
              for(i = 0; i < 23; i++){
                 if($scope.MapPointType === "birthplaces"){
@@ -271,23 +270,36 @@
 
           //Functions to construct URLs for images when player is selected (player photo, club logo, league logo)
           //Workaround: three database tables all have same column name (image_url) - didn't find better solution (selected values are hard-coded in each image)
-          $scope.imgClubs = "images/clubs/"; //path for player images
-          $scope.imgLeagues = "images/leagues/"; //path for player images
+          $scope.imgClubs = "images/clubs/"; //path for club logo images
+          $scope.imgLeagues = "images/leagues/"; //path for league logo images
           $scope.imgPlayers = "images/players/"; //path for player images
+          $scope.imgCountries = "images/countries/";//path for country flag images
 
-          $scope.makeClubImageUrl = function() {
+
+
+          $scope.makeClubImageUrl = function() {//make URL for club logos
 
             return $scope.imgClubs + $scope.selected[0][10];
           }
 
-          $scope.makeLeagueImageUrl = function() {
+          $scope.makeLeagueImageUrl = function() {//make URL for league logos
 
             return $scope.imgLeagues + $scope.selected[0][15];
           }
 
-          $scope.makePlayerImageUrl = function() {
+          $scope.makePlayerImageUrl = function() {//make URL for player images
 
             return $scope.imgPlayers + $scope.selected[0][20];
+          }
+
+          $scope.makeCountryImageUrl = function() {//make URL for national flag images
+
+            return $scope.imgCountries + $scope.players[0][3];
+          }
+
+          $scope.addFileTypeExt = function(fileType) {//add file extension to a URL
+
+            return fileType;
           }
 
 
