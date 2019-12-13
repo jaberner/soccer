@@ -36,11 +36,11 @@
   <article class="content_wide"><!-- .content -->
                     <div data-ng-init="b_c='birthplaces'" id="divRadio">
                     <label id="lblBirthplace">
-                         <input data-ng-model="b_c" type="radio" name="rdoB_C" data-ng-value="'birthplaces'" data-ng-change="chkBirthplace()" class="xRadio">
+                         <input data-ng-model="b_c" type="radio" name="radioBtnMapPointType" data-ng-value="'birthplaces'" data-ng-change="chkBirthplace()" class="xRadio">
                           View Birthplaces of Players
                         </label>
                         <label id="lblClub">
-                        <input data-ng-model="b_c" type="radio" name="rdoB_C" data-ng-value="'clubs'" data-ng-change="chkClubs()" class="xRadio">
+                        <input data-ng-model="b_c" type="radio" name="radioBtnMapPointType" data-ng-value="'clubs'" data-ng-change="chkClubs()" class="xRadio">
                          View Club Locations
                           </label>  
                       </div> 
