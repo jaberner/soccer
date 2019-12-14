@@ -132,6 +132,7 @@
 
           //class for map coordinates
           class MapCoordinate{
+
             constructor(longitude,latitude){
               this.x = longitude;
               this.y = latitude;
@@ -139,7 +140,19 @@
           }
 
 
-        
+           //class for clubs
+          class SoccerTeam{
+            
+            constructor(club_name,club_city, club_country){
+              this.name = club_name;
+              this.city = club_city;
+              this.country = club_country;
+            }
+
+            get_location(){
+              return this.city + ", " + this.country;
+            }
+          }
 
 
     //ANGULARJS CODE
