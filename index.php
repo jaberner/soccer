@@ -240,14 +240,14 @@
             document.getElementById('playerInfo').style.visibility = 'visible';//make player info/pic/logos visible
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
             if($scope.MapPointType === "birthplaces"){//if BIRTHPLACES chosen ->
-              var popup = L.popup()
+              var popup = L.popup()//create popup
               .setLatLng(lat_lon[index])
               .setContent($scope.selected[0].player_name + "<br />" + $scope.selected[0][28] + ", " + $scope.selected[0][38])
               .openOn(mymap);
             mymap.setView(lat_lon[index], 6);
             }
             if($scope.MapPointType === "clubs"){//if CLUBS chosen ->
-              var popup = L.popup()
+              var popup = L.popup()//create popup
               .setLatLng(lat_lon[index])
               .setContent($scope.selected[0][17] + "<br />" + $scope.selected[0].club_name + "<br />" + $scope.selected[0][22] + ", " + $scope.selected[0][34])
               .openOn(mymap);
