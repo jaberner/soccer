@@ -22,7 +22,7 @@
   <div id="right_side" class="sidebar1"><!-- holds combo boxes --> 
    <h2>FIFA Tournament Rosters</h2><!-- title-->
    <!-- TOURNAMENT LOGO and NATIONAL FLAG img --> 
-       <div id="divTournament"><img src="images/soccer.jpg" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img data-ng-model="country" ng-src="{{makeCountryImageUrl('.png')}}" id="imgCountry" alt="national flag"></div>
+       <div id="divTournament"><img data-ng-model="tournament" ng-src="{{makeTournamentImageUrl('.jpg')}}" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img data-ng-model="country" ng-src="{{makeCountryImageUrl('.png')}}" id="imgCountry" alt="national flag"></div>
        <hr>
        <div id="playerInfo"><!-- container on left side of screen showing pictures of players and their information --> 
           <img data-ng-repeat="player in selected" ng-src="{{makePlayerImageUrl()}}" id="imgPlayer" alt="player photo"><br /><img data-ng-repeat="player in selected" ng-src="{{makeClubImageUrl()}}" id="imgClub" alt="club logo"><img data-ng-repeat="player in selected" ng-src="{{makeLeagueImageUrl()}}" id="imgLeague" alt="league logo"><br /><!-- images of PLAYER, CLUB LOGO, LEAGUE LOGO--> 
@@ -127,7 +127,7 @@
           imgLeagues = "images/leagues/"; //path for league logo images
           imgPlayers = "images/players/"; //path for player images
           imgCountries = "images/countries/";//path for country flag images
-          imgTournaments = "images/tournaments";//path for tournament logos
+          imgTournaments = "images/tournaments/";//path for tournament logos
 
 
     //ANGULARJS CODE
@@ -179,7 +179,6 @@
                       $scope.player = "";//clear selected player
                       return;
                     }
-                    document.getElementById("imgTournament").src = "images/tournaments/" + $scope.tournament + ".jpg";
                });  
           }
 
@@ -290,8 +289,8 @@
           }
 
           $scope.makeTournamentImageUrl = function(fileType) {//make URL for tournament logo images
-
-            return imgTournaments + $scope.tournaments[0].tournament_name + fileType;
+            
+            return imgTournaments + $scope.tournament[0] + fileType;
           }
 
 
