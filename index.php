@@ -116,10 +116,17 @@
               id: 'mapbox.streets',
               accessToken: 'pk.eyJ1IjoiYmVybmVyamEwMSIsImEiOiJjaW16Zmg3cmkwNGd0d2tsdXV4eHB5NzA1In0.l2pc-oE1fUK2zGxT9IkugA'
           }).addTo(mymap);//add basemap
+
+          //VARIABLES
           var mymarker = [];//holds map points
           var lat_lon = [];//holds latitude/longitude values
           numMapPointsDisplayed = 0;//counter for the point currently displayed on the map corresponding to each respective player on a roster
           numPlayersRoster = 23;//total number of players on each team
+
+          imgClubs = "images/clubs/"; //path for club logo images
+          imgLeagues = "images/leagues/"; //path for league logo images
+          imgPlayers = "images/players/"; //path for player images
+          imgCountries = "images/countries/";//path for country flag images
 
 
      var app = angular.module("myapp",[]);
@@ -272,31 +279,27 @@
 
           //Functions to construct URLs for images when player is selected (player photo, club logo, league logo)
           //Workaround: three database tables all have same column name (image_url) - didn't find better solution (selected values are hard-coded in each image)
-          $scope.imgClubs = "images/clubs/"; //path for club logo images
-          $scope.imgLeagues = "images/leagues/"; //path for league logo images
-          $scope.imgPlayers = "images/players/"; //path for player images
-          $scope.imgCountries = "images/countries/";//path for country flag images
 
 
 
           $scope.makeClubImageUrl = function() {//make URL for club logos
 
-            return $scope.imgClubs + $scope.selected[0].club_id;
+            return imgClubs + $scope.selected[0].club_id;
           }
 
           $scope.makeLeagueImageUrl = function() {//make URL for league logos
 
-            return $scope.imgLeagues + $scope.selected[0].league_id;
+            return imgLeagues + $scope.selected[0].league_id;
           }
 
           $scope.makePlayerImageUrl = function() {//make URL for player images
 
-            return $scope.imgPlayers + $scope.selected[0].player_id;
+            return imgPlayers + $scope.selected[0].player_id;
           }
 
           $scope.makeCountryImageUrl = function(fileType) {//make URL for national flag images
 
-            return $scope.imgCountries + $scope.players[0][3] + fileType;
+            return imgCountries + $scope.players[0][3] + fileType;
           }
 
 
