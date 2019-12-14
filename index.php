@@ -236,18 +236,12 @@
 
 
 
-          //SELECT PLAYER combo box selection change
-          $scope.selPlayer = function(){
+            //SELECT PLAYER combo box selection change
+            $scope.selPlayer = function(){
             $http.post("sel_player.php", {'player_id':$scope.player, 'tournament_id':$scope.tournament})  
                .success(function(data){  
                     $scope.selected = data;
-                    $scope.zoomPlayer();
-               });
-          }
-
-
-          $scope.zoomPlayer = function(){
-            if(($scope.selected).length != 1){//if query doesn't return ONE player ('<SELECT PLAYER' clicked) -> close popup and hide player info/pic/logos
+                     if(($scope.selected).length != 1){//if query doesn't return ONE player ('<SELECT PLAYER' clicked) -> close popup and hide player info/pic/logos
               mymap.closePopup();
               document.getElementById('playerInfo').style.visibility = 'hidden';
               return;
@@ -274,7 +268,9 @@
               .openOn(mymap);
             mymap.setView(lat_lon[index], 5);
             }  
+               });
           }
+
 
 
           //Functions to construct URLs for images when player is selected (player photo, club logo, league logo)
