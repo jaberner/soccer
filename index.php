@@ -130,12 +130,34 @@
           imgCountries = "images/countries/";//path for country flag images
           imgTournaments = "images/tournaments/";//path for tournament logos
 
+
           //class for map coordinates
           class MapCoordinate{
 
             constructor(longitude,latitude){
               this.x = longitude;
               this.y = latitude;
+            }
+          }
+
+
+
+           //class for players
+          class SoccerPlayer{
+
+            constructor(player_name, player_city, player_country, player_number){
+              this.name = club_name;
+              this.city = club_city;
+              this.country = club_country;
+              this.number = player_number;
+            }
+
+            get_location(){
+              return this.city + ", " + this.country;
+            }
+
+            get_index(){//for coding purposes - player's index in global array of coordinates (lat_lon) corresponds to their jersey number - 1
+              return this.number - 1;
             }
           }
 
