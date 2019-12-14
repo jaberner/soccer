@@ -152,7 +152,7 @@
               this.number = player_number;
             }
 
-            get_location(){
+            get_location(){//return string formatted <city, country>
               return this.city + ", " + this.country;
             }
 
@@ -171,7 +171,7 @@
               this.country = club_country;
             }
 
-            get_location(){
+            get_location(){//return string formatted <city, country>
               return this.city + ", " + this.country;
             }
           }
