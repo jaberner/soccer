@@ -108,7 +108,7 @@
 
 
   <script type="text/javascript">
-  //LEAFLET basemap
+  //LEAFLET CODE: basemap
     var mymap = L.map('mapid').setView([0, 0], 2);//initialize the map with specified center and zoom
           L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {//initialize basemap
               attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -129,6 +129,7 @@
           imgCountries = "images/countries/";//path for country flag images
 
 
+    //ANGULARJS code
      var app = angular.module("myapp",[]);
 
      //prevent data from being copied
@@ -149,21 +150,22 @@
      app.controller("usercontroller", function($scope, $http){ 
 
 
-
+          //TOURNAMENTS loaded from database when page initializes
           $scope.loadTournament = function(){  
                $http.get("load_tment.php") 
                .success(function(data){  
                     $scope.tournaments = data;
-                    document.getElementById('tblPlayer').style.visibility = 'hidden';  
+                    document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table  
                })  
           }  
 
 
+          //SELECT TOURNAMENT combo box selection change
           $scope.loadCountry = function(){  
                $http.post("load_country.php", {'tournament_id':$scope.tournament})  
                .success(function(data){  
                     mymap.closePopup();
-                    document.getElementById('tblPlayer').style.visibility = 'hidden';
+                    document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                     document.getElementById('playerInfo').style.visibility = 'hidden';
                     $scope.countries = data;
                     $scope.players = null;
@@ -171,7 +173,7 @@
                     mymap.setView([0,0], 1);
                     document.getElementById('divCountry').style.visibility = 'hidden';
                     document.getElementById('divTournament').style.visibility = 'visible';
-                    document.getElementById('tblPlayer').style.visibility = 'hidden';
+                    document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                     if(($scope.countries).length == 0){
                       document.getElementById('divTournament').style.visibility = 'hidden';
                       $scope.country = "";
@@ -184,6 +186,7 @@
           }
 
 
+          //SELECT COUNTRY combo box selection change
           $scope.loadPlayer = function(){  
                $http.post("load_player.php", {'country_id':$scope.country, 'tournament_id':$scope.tournament})  
                .success(function(data){  
@@ -194,7 +197,7 @@
                       $scope.players = null;
                       $scope.clearData();
                       document.getElementById('divCountry').style.visibility = 'hidden';
-                      document.getElementById('tblPlayer').style.visibility = 'hidden'; 
+                      document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                       return;
                     }
                     $scope.showData();
@@ -203,11 +206,12 @@
                });
           }
 
+
           //clear all currently displayed map points and close pop-up window
           $scope.clearData = function(){
             mymap.closePopup();
              if(numMapPointsDisplayed > 0){
-                   for(i = 0; i < numMapPointsDisplayed; i++){
+                   for(i = 0; i < numMapPointsDisplayed; i++){//remove map point for each player on roster
                    mymap.removeLayer(mymarker[i]);
                 }
              }
@@ -215,7 +219,7 @@
 
 
           $scope.showData = function(){
-             $scope.clearData();
+             $scope.clearData();//clear map points, close pop-up window
              for(i = 0; i < numPlayersRoster; i++){
                 if($scope.MapPointType === "birthplaces"){
                   mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][26], $scope.players[i][27]]).addTo(mymap);
@@ -237,6 +241,7 @@
           }
 
 
+          //SELECT PLAYER combo box selection change
           $scope.selPlayer = function(){
             $http.post("sel_player.php", {'player_id':$scope.player, 'tournament_id':$scope.tournament})  
                .success(function(data){  
@@ -247,7 +252,7 @@
 
 
           $scope.zoomPlayer = function(){
-            if(($scope.selected).length != 1){//if query doesn't return ONE player -> close popup and hide player info/pic/logos
+            if(($scope.selected).length != 1){//if query doesn't return ONE player ('<SELECT PLAYER' clicked) -> close popup and hide player info/pic/logos
               mymap.closePopup();
               document.getElementById('playerInfo').style.visibility = 'hidden';
               return;
