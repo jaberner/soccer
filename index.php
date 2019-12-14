@@ -127,6 +127,7 @@
           imgLeagues = "images/leagues/"; //path for league logo images
           imgPlayers = "images/players/"; //path for player images
           imgCountries = "images/countries/";//path for country flag images
+          imgTournaments = "images/tournaments";//path for tournament logos
 
 
     //ANGULARJS CODE
