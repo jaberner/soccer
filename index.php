@@ -166,16 +166,16 @@
                .success(function(data){
                     document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                     document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
-                    $scope.countries = data;
-                    $scope.players = null;
+                    $scope.countries = data;//countries for selected tournament returned from database, added to countries combo box
+                    $scope.players = null;//clear selected players if a national team reviously chosen
                     $scope.clearData();//clear map points, close pop-up window
-                    mymap.setView([0,0], 1);
+                    mymap.setView([0,0], 1);//zoom out
                     document.getElementById('divCountry').style.visibility = 'hidden';//hide country flag image
                     document.getElementById('divTournament').style.visibility = 'visible';//hide tournament logo
-                    if(($scope.countries).length == 0){
+                    if(($scope.countries).length == 0){//if query doesn't return ONE country ('<SELECT TOURNAMENT' clicked) -> 
                       document.getElementById('divTournament').style.visibility = 'hidden';//hide tournament logo
-                      $scope.country = "";
-                      $scope.player = "";
+                      $scope.country = "";//clear selected coutnries
+                      $scope.player = "";//clear selected player
                       $scope.loadPlayer();
                       return;
                     }
