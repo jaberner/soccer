@@ -25,8 +25,8 @@
        <div id="divTournament"><img data-ng-model="tournament" ng-src="{{makeTournamentImageUrl('.jpg')}}" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img data-ng-model="country" ng-src="{{makeCountryImageUrl('.png')}}" id="imgCountry" alt="national flag"></div>
        <hr>
        <div id="playerInfo"><!-- container on left side of screen showing pictures of players and their information --> 
-          <img data-ng-repeat="player in selected" ng-src="{{makePlayerImageUrl()}}" id="imgPlayer" alt="player photo"><br />
-          <img data-ng-repeat="player in selected" ng-src="{{makeClubImageUrl()}}" id="imgClub" alt="club logo"><img data-ng-repeat="player in selected" ng-src="{{makeLeagueImageUrl()}}" id="imgLeague" alt="league logo"><br /><!-- images of PLAYER, CLUB LOGO, LEAGUE LOGO--> 
+          <img data-ng-repeat="player in selected" ng-src="{{makePlayerImageUrl('.jpg')}}" id="imgPlayer" alt="player photo"><br />
+          <img data-ng-repeat="player in selected" ng-src="{{makeClubImageUrl('.jpg')}}" id="imgClub" alt="club logo"><img data-ng-repeat="player in selected" ng-src="{{makeLeagueImageUrl('.jpg')}}" id="imgLeague" alt="league logo"><br /><!-- images of PLAYER, CLUB LOGO, LEAGUE LOGO--> 
           <label id="lNumber" data-ng-repeat="player in selected">{{player.number}}</label><label id="lName" data-ng-repeat="player in selected">{{player.player_name}}</label><!-- info for individual PLAYERS--> 
           <br /><label id="lPosition" data-ng-repeat="player in selected">{{player.position}}</label><label data-ng-repeat="player in selected" id="lAge">{{player.age}}</label><br /><!-- individual PLAYER info--> 
           <label id="lBirthplace" data-ng-repeat="player in selected">{{player.city_name}}, {{player.country_name}}</label><br /><!-- individual PLAYER info-->
@@ -315,19 +315,19 @@
 
           //Functions to construct URLs for images when player is selected (player photo, club logo, league logo)
           //Workaround: three database tables all have same column name (image_url) - didn't find better solution (selected values are hard-coded in each image)
-          $scope.makeClubImageUrl = function() {//make URL for club logos
+          $scope.makeClubImageUrl = function(fileType) {//make URL for club logos
 
-            return imgClubs + $scope.selected[0].club_id;
+            return imgClubs + $scope.selected[0].club_id + fileType;
           }
 
-          $scope.makeLeagueImageUrl = function() {//make URL for league logos
+          $scope.makeLeagueImageUrl = function(fileType) {//make URL for league logos
 
-            return imgLeagues + $scope.selected[0].league_id;
+            return imgLeagues + $scope.selected[0].league_id + fileType;
           }
 
-          $scope.makePlayerImageUrl = function() {//make URL for player images
+          $scope.makePlayerImageUrl = function(fileType) {//make URL for player images
 
-            return imgPlayers + $scope.selected[0].player_id;
+            return imgPlayers + $scope.selected[0].player_id + fileType;
           }
 
           $scope.makeCountryImageUrl = function(fileType) {//make URL for national flag images
