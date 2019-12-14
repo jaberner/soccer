@@ -129,7 +129,7 @@
           imgCountries = "images/countries/";//path for country flag images
 
 
-    //ANGULARJS code
+    //ANGULARJS CODE
      var app = angular.module("myapp",[]);
 
      //prevent data from being copied
@@ -146,7 +146,7 @@
 
 
 
-     //controller
+     //CONTROLLER
      app.controller("usercontroller", function($scope, $http){ 
 
 
@@ -163,19 +163,18 @@
           //SELECT TOURNAMENT combo box selection change
           $scope.loadCountry = function(){  
                $http.post("load_country.php", {'tournament_id':$scope.tournament})  
-               .success(function(data){  
-                    mymap.closePopup();
+               .success(function(data){
                     document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
-                    document.getElementById('playerInfo').style.visibility = 'hidden';
+                    document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
                     $scope.countries = data;
                     $scope.players = null;
-                    $scope.clearData();
+                    $scope.clearData();//clear map points, close pop-up window
                     mymap.setView([0,0], 1);
-                    document.getElementById('divCountry').style.visibility = 'hidden';
-                    document.getElementById('divTournament').style.visibility = 'visible';
+                    document.getElementById('divCountry').style.visibility = 'hidden';//hide country flag image
+                    document.getElementById('divTournament').style.visibility = 'visible';//hide tournament logo
                     document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                     if(($scope.countries).length == 0){
-                      document.getElementById('divTournament').style.visibility = 'hidden';
+                      document.getElementById('divTournament').style.visibility = 'hidden';//hide tournament logo
                       $scope.country = "";
                       $scope.player = "";
                       $scope.loadPlayer();
@@ -191,7 +190,7 @@
                $http.post("load_player.php", {'country_id':$scope.country, 'tournament_id':$scope.tournament})  
                .success(function(data){  
                     $scope.players = data;
-                    document.getElementById('playerInfo').style.visibility = 'hidden';
+                    document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
                     if(($scope.players).length == 0){
                       $scope.player = ""; 
                       $scope.players = null;
@@ -227,7 +226,7 @@
                     $scope.selected = data;
                      if(($scope.selected).length != 1){//if query doesn't return ONE player ('<SELECT PLAYER' clicked) -> close popup and hide player info/pic/logos
               mymap.closePopup();
-              document.getElementById('playerInfo').style.visibility = 'hidden';
+              document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
               return;
             }     
             document.getElementById('playerInfo').style.visibility = 'visible';//make player info/pic/logos visible
