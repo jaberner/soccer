@@ -200,10 +200,22 @@
                       document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                       return;
                     }
-                    $scope.showData();
-                    document.getElementById('divCountry').style.visibility = 'visible';
-                    document.getElementById('tblPlayer').style.visibility = 'visible';
-               });
+                    $scope.clearData();//clear map points, close pop-up window
+                    for(i = 0; i < numPlayersRoster; i++){
+                      if($scope.MapPointType === "birthplaces"){
+                        mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][26], $scope.players[i][27]]).addTo(mymap);
+                        lat_lon[i] = [$scope.players[i][26], $scope.players[i][27]];
+                      }
+                      if($scope.MapPointType === "clubs"){
+                          mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][20], $scope.players[i][21]]).addTo(mymap);
+                          lat_lon[i] = [$scope.players[i][20], $scope.players[i][21]];
+                      }
+                        numMapPointsDisplayed++;
+                      }
+                     mymap.fitBounds(lat_lon);//zooms to best show all map points that are currently displayed
+                            document.getElementById('divCountry').style.visibility = 'visible';
+                            document.getElementById('tblPlayer').style.visibility = 'visible';
+                       });
           }
 
 
@@ -215,23 +227,6 @@
                    mymap.removeLayer(mymarker[i]);
                 }
              }
-          }
-
-
-          $scope.showData = function(){
-             $scope.clearData();//clear map points, close pop-up window
-             for(i = 0; i < numPlayersRoster; i++){
-                if($scope.MapPointType === "birthplaces"){
-                  mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][26], $scope.players[i][27]]).addTo(mymap);
-                  lat_lon[i] = [$scope.players[i][26], $scope.players[i][27]];
-              }
-              if($scope.MapPointType === "clubs"){
-                  mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][20], $scope.players[i][21]]).addTo(mymap);
-                  lat_lon[i] = [$scope.players[i][20], $scope.players[i][21]];
-              }
-                numMapPointsDisplayed++;
-             }
-             mymap.fitBounds(lat_lon);//zooms to best show all map points that are currently displayed
           }
 
 
