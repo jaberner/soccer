@@ -172,7 +172,6 @@
                     mymap.setView([0,0], 1);
                     document.getElementById('divCountry').style.visibility = 'hidden';//hide country flag image
                     document.getElementById('divTournament').style.visibility = 'visible';//hide tournament logo
-                    document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                     if(($scope.countries).length == 0){
                       document.getElementById('divTournament').style.visibility = 'hidden';//hide tournament logo
                       $scope.country = "";
