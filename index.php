@@ -254,7 +254,6 @@
             }     
             document.getElementById('playerInfo').style.visibility = 'visible';//make player info/pic/logos visible
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
-            var latlng;
             if($scope.MapPointType === "birthplaces"){
               latlng = L.latLng($scope.selected[0][31], $scope.selected[0][32]);
             }
