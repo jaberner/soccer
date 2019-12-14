@@ -213,20 +213,9 @@
                         numMapPointsDisplayed++;
                       }
                      mymap.fitBounds(lat_lon);//zooms to best show all map points that are currently displayed
-                            document.getElementById('divCountry').style.visibility = 'visible';
-                            document.getElementById('tblPlayer').style.visibility = 'visible';
-                       });
-          }
-
-
-          //clear all currently displayed map points and close pop-up window
-          $scope.clearData = function(){
-            mymap.closePopup();
-             if(numMapPointsDisplayed > 0){
-                   for(i = 0; i < numMapPointsDisplayed; i++){//remove map point for each player on roster
-                   mymap.removeLayer(mymarker[i]);
-                }
-             }
+                      document.getElementById('divCountry').style.visibility = 'visible';
+                      document.getElementById('tblPlayer').style.visibility = 'visible';
+            });
           }
 
 
@@ -264,6 +253,18 @@
             mymap.setView(lat_lon[index], 5);
             }  
                });
+          }
+
+
+
+          //clear all currently displayed map points and close pop-up window
+          $scope.clearData = function(){
+            mymap.closePopup();
+             if(numMapPointsDisplayed > 0){
+                   for(i = 0; i < numMapPointsDisplayed; i++){//remove map point for each player on roster
+                   mymap.removeLayer(mymarker[i]);
+                }
+             }
           }
 
 
