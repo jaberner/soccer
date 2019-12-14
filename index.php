@@ -130,11 +130,19 @@
           imgCountries = "images/countries/";//path for country flag images
           imgTournaments = "images/tournaments/";//path for tournament logos
 
+          //class for map coordinates
+          class MapCoordinate{
+            constructor(longitude,latitude){
+              this.x = longitude;
+              this.y = latitude;
+            }
+          }
+
 
     //ANGULARJS CODE
      var app = angular.module("myapp",[]);
 
-     //prevent data from being copied
+     //DIRECTIVE - prevent data from being copied
      app.directive('stopccp', function(){
       return {
         scope: {},
@@ -144,8 +152,7 @@
             });
         }
     };
-}); 
-
+});
 
 
      //CONTROLLER
@@ -201,6 +208,7 @@
                     $scope.clearData();//clear map points, close pop-up window
                     for(i = 0; i < numPlayersRoster; i++){
                       if($scope.MapPointType === "birthplaces"){
+                        
                         mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][26], $scope.players[i][27]]).addTo(mymap);
                         lat_lon[i] = [$scope.players[i][26], $scope.players[i][27]];
                       }
