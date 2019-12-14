@@ -142,8 +142,8 @@
 
            //class for clubs
           class SoccerTeam{
-            
-            constructor(club_name,club_city, club_country){
+
+            constructor(club_name, club_city, club_country){
               this.name = club_name;
               this.city = club_city;
               this.country = club_country;
@@ -256,6 +256,7 @@
             document.getElementById('playerInfo').style.visibility = 'visible';//make player info/pic/logos visible
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
             if($scope.MapPointType === "birthplaces"){//if BIRTHPLACES chosen ->
+
               var popup = L.popup()//create popup
               .setLatLng(lat_lon[index])//set location of popup
               .setContent($scope.selected[0].player_name + "<br />" + $scope.selected[0][28] + ", " + $scope.selected[0][38])//show player's name and birthplace in popup
@@ -263,9 +264,10 @@
             mymap.setView(lat_lon[index], 6);
             }
             if($scope.MapPointType === "clubs"){//if CLUBS chosen ->
+              soccer_team = new SoccerTeam($scope.selected[0].club_name, $scope.selected[0][22], $scope.selected[0][34]);//new SoccerTeam object
               var popup = L.popup()//create popup
               .setLatLng(lat_lon[index])//set location of popup
-              .setContent($scope.selected[0][17] + "<br />" + $scope.selected[0].club_name + "<br />" + $scope.selected[0][22] + ", " + $scope.selected[0][34])//show player's name and club_location in popup
+              .setContent($scope.selected[0][17] + "<br />" + soccer_team.name + "<br />" + soccer_team.get_location())//show player's name and club_location in popup
               .openOn(mymap);//open popup
             mymap.setView(lat_lon[index], 5);//set map location and zoom-level
             }  
