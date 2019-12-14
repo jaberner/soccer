@@ -210,11 +210,12 @@
                       if($scope.MapPointType === "birthplaces"){
                         player_birthplace = new MapCoordinate($scope.players[i][26], $scope.players[i][27]);
                         mymarker[numMapPointsDisplayed] = L.marker([player_birthplace.x, player_birthplace.y]).addTo(mymap);
-                        lat_lon[i] = [$scope.players[i][26], $scope.players[i][27]];
+                        lat_lon[i] = [player_birthplace.x, player_birthplace.y];
                       }
                       if($scope.MapPointType === "clubs"){
-                          mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][20], $scope.players[i][21]]).addTo(mymap);
-                          lat_lon[i] = [$scope.players[i][20], $scope.players[i][21]];
+                          club_location = new MapCoordinate($scope.players[i][20], $scope.players[i][21]);
+                          mymarker[numMapPointsDisplayed] = L.marker([club_location.x, club_location.y]).addTo(mymap);
+                          lat_lon[i] = [club_location.x, club_location.y];
                       }
                         numMapPointsDisplayed++;
                       }
