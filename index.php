@@ -144,6 +144,7 @@
 }); 
 
 
+
      //controller
      app.controller("usercontroller", function($scope, $http){ 
 
@@ -246,12 +247,12 @@
 
 
           $scope.zoomPlayer = function(){
-            if(($scope.selected).length == 0){
+            if(($scope.selected).length != 1){//if query doesn't return ONE player -> close popup and hide player info/pic/logos
               mymap.closePopup();
               document.getElementById('playerInfo').style.visibility = 'hidden';
               return;
-            }            
-            document.getElementById('playerInfo').style.visibility = 'visible';
+            }     
+            document.getElementById('playerInfo').style.visibility = 'visible';//make player info/pic/logos visible
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
             var latlng;
             if($scope.MapPointType === "birthplaces"){
@@ -279,9 +280,6 @@
 
           //Functions to construct URLs for images when player is selected (player photo, club logo, league logo)
           //Workaround: three database tables all have same column name (image_url) - didn't find better solution (selected values are hard-coded in each image)
-
-
-
           $scope.makeClubImageUrl = function() {//make URL for club logos
 
             return imgClubs + $scope.selected[0].club_id;
