@@ -176,7 +176,6 @@
                       document.getElementById('divTournament').style.visibility = 'hidden';//hide tournament logo
                       $scope.country = "";//clear selected coutnries
                       $scope.player = "";//clear selected player
-                      $scope.loadPlayer();
                       return;
                     }
                     document.getElementById("imgTournament").src = "images/tournaments/" + $scope.tournament + ".jpg";
