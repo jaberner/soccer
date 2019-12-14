@@ -181,7 +181,7 @@
                     mymap.setView([0,0], 1);//zoom out
                     document.getElementById('divCountry').style.visibility = 'hidden';//hide country flag image
                     document.getElementById('divTournament').style.visibility = 'visible';//hide tournament logo
-                    if(($scope.countries).length == 0){//if query doesn't return ONE country ('<SELECT TOURNAMENT>' clicked) -> 
+                    if(($scope.countries).length == 0){//if query doesn't return ONE country ('<SELECT TOURNAMENT' clicked) -> 
                       document.getElementById('divTournament').style.visibility = 'hidden';//hide tournament logo
                       $scope.country = "";//clear selected coutnries
                       $scope.player = "";//clear selected player
@@ -197,7 +197,7 @@
                .success(function(data){  
                     $scope.players = data;//players for selected national team returned from database, added to PLAYERS combo box
                     document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
-                    if(($scope.players).length == 0){//if query doesn't return ONE player ('<SELECT PLAYER>' clicked) -> 
+                    if(($scope.players).length == 0){//if query doesn't return ONE player ('<SELECT PLAYER' clicked) -> 
                       $scope.player = "";//clear previously selected player if there is one
                       $scope.players = null;//clear selected players if a national team reviously chosen
                       $scope.clearData();//clear map points, close pop-up window
@@ -206,18 +206,17 @@
                       return;
                     }
                     $scope.clearData();//clear map points, close pop-up window
-                    for(i = 0; i < numPlayersRoster; i++){//for each player on roster:
-                      if($scope.MapPointType === "birthplaces"){//if BIRTHPLACES chosen ->
-                        player_birthplace = new MapCoordinate($scope.players[i][26], $scope.players[i][27]);//new MapCoordinate object to hold birthplace x,y
-                        mymarker[numMapPointsDisplayed] = L.marker([player_birthplace.x, player_birthplace.y]).addTo(mymap);//LEAFLET: add marker to map for birthplace
-                        lat_lon[i] = [player_birthplace.x, player_birthplace.y];//store coordinates for player's birthplace in global array
+                    for(i = 0; i < numPlayersRoster; i++){
+                      if($scope.MapPointType === "birthplaces"){
+                        player_birthplace = new MapCoordinate($scope.players[i][26], $scope.players[i][27]);
+                        mymarker[numMapPointsDisplayed] = L.marker([player_birthplace.x, player_birthplace.y]).addTo(mymap);
+                        lat_lon[i] = [$scope.players[i][26], $scope.players[i][27]];
                       }
-                      if($scope.MapPointType === "clubs"){//if CLUBS chosen ->
-                          club_location = new MapCoordinate($scope.players[i][20], $scope.players[i][21]);//new MapCoordinate object to hold club location x,y
-                          mymarker[numMapPointsDisplayed] = L.marker([club_location.x, club_location.y]).addTo(mymap);//LEAFLET: add marker to map for club location
-                          lat_lon[i] = [club_location.x, club_location.y];//store coordinates for player's club location in global array
+                      if($scope.MapPointType === "clubs"){
+                          mymarker[numMapPointsDisplayed] = L.marker([$scope.players[i][20], $scope.players[i][21]]).addTo(mymap);
+                          lat_lon[i] = [$scope.players[i][20], $scope.players[i][21]];
                       }
-                        numMapPointsDisplayed++;//increment until one point mapped for each player on roster
+                        numMapPointsDisplayed++;
                       }
                      mymap.fitBounds(lat_lon);//zooms to best show all map points that are currently displayed
                       document.getElementById('divCountry').style.visibility = 'visible';//show country flag image
@@ -232,10 +231,10 @@
             $http.post("sel_player.php", {'player_id':$scope.player, 'tournament_id':$scope.tournament})  
                .success(function(data){  
                     $scope.selected = data;
-                     if(($scope.selected).length != 1){//if query doesn't return ONE player ('<SELECT PLAYER>' clicked) -> close popup and hide player info/pic/logos
-                      mymap.closePopup();
-                      document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
-                      return;
+                     if(($scope.selected).length != 1){//if query doesn't return ONE player ('<SELECT PLAYER' clicked) -> close popup and hide player info/pic/logos
+              mymap.closePopup();
+              document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
+              return;
             }     
             document.getElementById('playerInfo').style.visibility = 'visible';//make player info/pic/logos visible
             var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
