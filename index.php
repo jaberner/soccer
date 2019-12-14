@@ -25,9 +25,8 @@
        <div id="divTournament"><img data-ng-model="tournament" ng-src="{{makeTournamentImageUrl('.jpg')}}" id="imgTournament" alt="tournament logo"></div><div id="divCountry"><img data-ng-model="country" ng-src="{{makeCountryImageUrl('.png')}}" id="imgCountry" alt="national flag"></div>
        <hr>
        <div id="playerInfo"><!-- container on left side of screen showing pictures of players and their information --> 
-          <img data-ng-repeat="player in selected" ng-src="{{makePlayerImageUrl('.jpg')}}" id="imgPlayer" alt="player photo"><br />
-          <img data-ng-repeat="player in selected" ng-src="{{makeClubImageUrl('.jpg')}}" id="imgClub" alt="club logo"><img data-ng-repeat="player in selected" ng-src="{{makeLeagueImageUrl('.jpg')}}" id="imgLeague" alt="league logo"><br /><!-- images of PLAYER, CLUB LOGO, LEAGUE LOGO--> 
-          <label id="lNumber" data-ng-repeat="player in selected">{{player.number}}</label><label id="lName" data-ng-repeat="player in selected">{{player.player_name}}</label><!-- info for individual PLAYERS--> 
+          <img ng-src="{{makePlayerImageUrl('.jpg')}}" id="imgPlayer" alt="player photo"><br />
+          <img ng-src="{{makeClubImageUrl('.jpg')}}" id="imgClub" alt="club logo"><img ng-src="{{makeLeagueImageUrl('.jpg')}}" id="imgLeague" alt="league logo"><br /><!-- images of PLAYER, CLUB LOGO, LEAGUE LOGO--><label id="lNumber" data-ng-repeat="player in selected">{{player.number}}</label><label id="lName" data-ng-repeat="player in selected">{{player.player_name}}</label><!-- info for individual PLAYERS--> 
           <br /><label id="lPosition" data-ng-repeat="player in selected">{{player.position}}</label><label data-ng-repeat="player in selected" id="lAge">{{player.age}}</label><br /><!-- individual PLAYER info--> 
           <label id="lBirthplace" data-ng-repeat="player in selected">{{player.city_name}}, {{player.country_name}}</label><br /><!-- individual PLAYER info-->
           <label id="lClub" data-ng-repeat="player in selected">{{player.club_name}}</label><br /><!-- individual PLAYER info-->
