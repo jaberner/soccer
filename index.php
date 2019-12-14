@@ -206,14 +206,14 @@
                       return;
                     }
                     $scope.clearData();//clear map points, close pop-up window
-                    for(i = 0; i < numPlayersRoster; i++){
-                      if($scope.MapPointType === "birthplaces"){
-                        player_birthplace = new MapCoordinate($scope.players[i][26], $scope.players[i][27]);
+                    for(i = 0; i < numPlayersRoster; i++){//for each player on roster:
+                      if($scope.MapPointType === "birthplaces"){//if BIRTHPLACES chosen ->
+                        player_birthplace = new MapCoordinate($scope.players[i][26], $scope.players[i][27]);//new MapCoordinate object to hold birthplace x,y
                         mymarker[numMapPointsDisplayed] = L.marker([player_birthplace.x, player_birthplace.y]).addTo(mymap);
                         lat_lon[i] = [player_birthplace.x, player_birthplace.y];
                       }
-                      if($scope.MapPointType === "clubs"){
-                          club_location = new MapCoordinate($scope.players[i][20], $scope.players[i][21]);
+                      if($scope.MapPointType === "clubs"){//if CLUBS chosen ->
+                          club_location = new MapCoordinate($scope.players[i][20], $scope.players[i][21]);//new MapCoordinate object to hold club location x,y
                           mymarker[numMapPointsDisplayed] = L.marker([club_location.x, club_location.y]).addTo(mymap);
                           lat_lon[i] = [club_location.x, club_location.y];
                       }
