@@ -151,7 +151,7 @@
      app.controller("usercontroller", function($scope, $http){ 
 
 
-          //TOURNAMENTS loaded from database when page initializes
+          //tournamnets loaded from database when page INITIALIZES
           $scope.loadTournament = function(){  
                $http.get("load_tment.php") 
                .success(function(data){  
@@ -167,7 +167,7 @@
                .success(function(data){
                     document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                     document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
-                    $scope.countries = data;//countries for selected tournament returned from database, added to countries combo box
+                    $scope.countries = data;//countries for selected tournament returned from database, added to COUNTRIES combo box
                     $scope.players = null;//clear selected players if a national team reviously chosen
                     $scope.clearData();//clear map points, close pop-up window
                     mymap.setView([0,0], 1);//zoom out
@@ -187,13 +187,13 @@
           $scope.loadPlayer = function(){  
                $http.post("load_player.php", {'country_id':$scope.country, 'tournament_id':$scope.tournament})  
                .success(function(data){  
-                    $scope.players = data;
+                    $scope.players = data;//players for selected national team returned from database, added to PLAYERS combo box
                     document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
-                    if(($scope.players).length == 0){
-                      $scope.player = ""; 
-                      $scope.players = null;
-                      $scope.clearData();
-                      document.getElementById('divCountry').style.visibility = 'hidden';
+                    if(($scope.players).length == 0){//if query doesn't return ONE player ('<SELECT PLAYER' clicked) -> 
+                      $scope.player = "";//clear previously selected player if there is one
+                      $scope.players = null;//clear selected players if a national team reviously chosen
+                      $scope.clearData();//clear map points, close pop-up window
+                      document.getElementById('divCountry').style.visibility = 'hidden';//hide country flag image
                       document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                       return;
                     }
@@ -210,8 +210,8 @@
                         numMapPointsDisplayed++;
                       }
                      mymap.fitBounds(lat_lon);//zooms to best show all map points that are currently displayed
-                      document.getElementById('divCountry').style.visibility = 'visible';
-                      document.getElementById('tblPlayer').style.visibility = 'visible';
+                      document.getElementById('divCountry').style.visibility = 'visible';//show country flag image
+                      document.getElementById('tblPlayer').style.visibility = 'visible';//show table
             });
           }
 
