@@ -131,9 +131,10 @@
           imgTournaments = "images/tournaments/";//path for tournament logos
 
 
+
+
           //class for map coordinates
           class MapCoordinate{
-
             constructor(longitude,latitude){
               this.x = longitude;
               this.y = latitude;
@@ -144,11 +145,10 @@
 
            //class for players
           class SoccerPlayer{
-
             constructor(player_name, player_city, player_country, player_number){
-              this.name = club_name;
-              this.city = club_city;
-              this.country = club_country;
+              this.name = player_name;
+              this.city = player_city;
+              this.country = player_country;
               this.number = player_number;
             }
 
@@ -162,9 +162,9 @@
           }
 
 
+
            //class for clubs
           class SoccerTeam{
-
             constructor(club_name, club_city, club_country){
               this.name = club_name;
               this.city = club_city;
@@ -175,6 +175,9 @@
               return this.city + ", " + this.country;
             }
           }
+
+
+
 
 
     //ANGULARJS CODE
@@ -276,12 +279,12 @@
                       return;
             }     
             document.getElementById('playerInfo').style.visibility = 'visible';//make player info/pic/logos visible
-            var index = $scope.selected[0][3] - 1;//index = selected player's number - 1
+            soccer_player = new SoccerPlayer($scope.selected[0].player_name, $scope.selected[0][28], $scope.selected[0][38], $scope.selected[0][3]);//new SoccerPlayer object
+            var index = soccer_player.get_index();//index = selected player's number - 1
             if($scope.MapPointType === "birthplaces"){//if BIRTHPLACES chosen ->
-
               var popup = L.popup()//create popup
               .setLatLng(lat_lon[index])//set location of popup
-              .setContent($scope.selected[0].player_name + "<br />" + $scope.selected[0][28] + ", " + $scope.selected[0][38])//show player's name and birthplace in popup
+              .setContent(soccer_player.name + "<br />" + soccer_player.get_location())//show player's name and birthplace in popup
               .openOn(mymap);//open popup
             mymap.setView(lat_lon[index], 6);
             }
