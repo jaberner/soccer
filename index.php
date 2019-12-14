@@ -289,6 +289,11 @@
             return imgCountries + $scope.players[0][3] + fileType;
           }
 
+          $scope.makeTournamentImageUrl = function(fileType) {//make URL for tournament logo images
+
+            return imgTournaments + $scope.tournaments[0].tournament_name + fileType;
+          }
+
 
           //switch type of map points displayed on map TO CLUB LOCATIONS (where each player plays professionally)
           $scope.chkClubs = function(){
