@@ -231,14 +231,9 @@
               }
                 numMapPointsDisplayed++;
              }
-             $scope.zoomData();
+             mymap.fitBounds(lat_lon);//zooms to best show all map points that are currently displayed
           }
 
-
-          //zooms to best show all map points that are currently displayed
-          $scope.zoomData = function(){
-            mymap.fitBounds(lat_lon);  
-          }
 
 
           //SELECT PLAYER combo box selection change
