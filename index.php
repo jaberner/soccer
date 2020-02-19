@@ -14,6 +14,9 @@
 <link href="style/stylesheet.css" rel="stylesheet" type="text/css"><!--[if less than IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+<link rel="stylesheet" href="dist/MarkerCluster.css" />
+<link rel="stylesheet" href="dist/MarkerCluster.Default.css" />
+<script src="dist/leaflet.markercluster-src.js"></script>
 </head>
 
 <body>
@@ -119,6 +122,8 @@
 
           //VARIABLES
           var mymarker = [];//holds map points
+          var markers = L.markerClusterGroup({maxClusterRadius: 2});
+          var marker = L.marker();
           var lat_lon = [];//holds latitude/longitude values
           numMapPointsDisplayed = 0;//counter for the point currently displayed on the map corresponding to each respective player on a roster
           numPlayersRoster = 23;//total number of players on each team
@@ -232,7 +237,7 @@
 
 
           //SELECT COUNTRY combo box selection change
-          $scope.loadPlayer = function(){  
+          $scope.loadPlayer = function(){
                $http.post("load_player.php", {'country_id':$scope.country, 'tournament_id':$scope.tournament})  
                .success(function(data){  
                     $scope.players = data;//players for selected national team returned from database, added to PLAYERS combo box
@@ -249,16 +254,26 @@
                     for(i = 0; i < numPlayersRoster; i++){//for each player on roster:
                       if($scope.MapPointType === "birthplaces"){//if BIRTHPLACES chosen ->
                         player_birthplace = new MapCoordinate($scope.players[i][26], $scope.players[i][27]);//new MapCoordinate object to hold birthplace x,y
-                        mymarker[numMapPointsDisplayed] = L.marker([player_birthplace.x, player_birthplace.y]).addTo(mymap);//LEAFLET: add marker to map for birthplace
+                        //mymarker[numMapPointsDisplayed] = L.marker([player_birthplace.x, player_birthplace.y]).addTo(mymap);//LEAFLET: add marker to map for birthplace
+                        var name = $scope.players[i][1];//for popup on click
+                        var marker = L.marker([player_birthplace.x, player_birthplace.y], {name: name});
+                        marker.bindPopup(name);
+                        markers.addLayer(marker);//LEAFLET: add marker to map for birthplace
                         lat_lon[i] = [player_birthplace.x, player_birthplace.y];//store coordinates for player's birthplace in global array
                       }
                       if($scope.MapPointType === "clubs"){//if CLUBS chosen ->
                           club_location = new MapCoordinate($scope.players[i][20], $scope.players[i][21]);//new MapCoordinate object to hold club location x,y
-                          mymarker[numMapPointsDisplayed] = L.marker([club_location.x, club_location.y]).addTo(mymap);//LEAFLET: add marker to map for club location
+                          //mymarker[numMapPointsDisplayed] = L.marker([club_location.x, club_location.y]).addTo(mymap);//LEAFLET: add marker to map for club location
+                          var name = $scope.players[i][1];//for popup on click
+                          marker = L.marker([club_location.x, club_location.y], {name: name});
+                          marker.bindPopup(name);
+                          markers.addLayer(marker);//LEAFLET: add marker to map for birthplace
                           lat_lon[i] = [club_location.x, club_location.y];//store coordinates for player's club location in global array
                       }
                         numMapPointsDisplayed++;//increment until one point mapped for each player on roster
                       }
+                      mymap.addLayer(markers);
+                      
                      mymap.fitBounds(lat_lon);//zooms to best show all map points that are currently displayed
                       document.getElementById('divCountry').style.visibility = 'visible';//show country flag image
                       document.getElementById('tblPlayer').style.visibility = 'visible';//show table
@@ -303,11 +318,7 @@
           //clear all currently displayed map points and close pop-up window
           $scope.clearData = function(){
             mymap.closePopup();
-             if(numMapPointsDisplayed > 0){
-                   for(i = 0; i < numMapPointsDisplayed; i++){//remove map point for each player on roster
-                   mymap.removeLayer(mymarker[i]);
-                }
-             }
+            markers.clearLayers();
           }
 
 
