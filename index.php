@@ -30,7 +30,7 @@
        <div id="playerInfo"><!-- container on left side of screen showing pictures of players and their information --> 
           <img ng-src="{{makePlayerImageUrl('.jpg')}}" id="imgPlayer" alt="player photo"><br />
           <img ng-src="{{makeClubImageUrl('.jpg')}}" id="imgClub" alt="club logo"><img ng-src="{{makeLeagueImageUrl('.jpg')}}" id="imgLeague" alt="league logo"><br /><!-- images of PLAYER, CLUB LOGO, LEAGUE LOGO--><label id="lNumber" data-ng-repeat="player in selected">{{player.number}}</label><label id="lName" data-ng-repeat="player in selected">{{player.player_name}}</label><!-- info for individual PLAYERS--> 
-          <br /><label id="lPosition" data-ng-repeat="player in selected">{{player.position}}</label><label data-ng-repeat="player in selected" id="lAge">{{player.age}}</label><br /><!-- individual PLAYER info--> 
+          <br /><label id="lPosition" data-ng-repeat="player in selected">{{player.position}}</label><label>age:&nbsp</label><label data-ng-repeat="player in selected" id="lAge">{{player.age}}</label><br /><!-- individual PLAYER info--> 
           <label id="lBirthplace" data-ng-repeat="player in selected">{{player.city_name}}, {{player.country_name}}</label><br /><!-- individual PLAYER info-->
           <label id="lClub" data-ng-repeat="player in selected">{{player.club_name}}</label><br /><!-- individual PLAYER info-->
           <label id="lLeague" data-ng-repeat="player in selected">{{player.league_name}}</label><!-- individual PLAYER info-->
