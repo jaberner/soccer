@@ -11,6 +11,8 @@
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
    crossorigin=""></script>
+   <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+   <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
 <link href="style/stylesheet.css" rel="stylesheet" type="text/css"><!--[if less than IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -112,13 +114,18 @@
 
   <script type="text/javascript">
   //LEAFLET CODE: basemap
-    var mymap = L.map('mapid').setView([0, 0], 2);//initialize the map with specified center and zoom
-          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {//initialize basemap
-              attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-              maxZoom: 18,
-              id: 'mapbox.streets',
-              accessToken: 'pk.eyJ1IjoiYmVybmVyamEwMSIsImEiOiJjaW16Zmg3cmkwNGd0d2tsdXV4eHB5NzA1In0.l2pc-oE1fUK2zGxT9IkugA'
-          }).addTo(mymap);//add basemap
+    
+
+
+          var mymap = L.map('mapid').setView([0, 0], 2);
+          L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+          attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
+          tileSize: 512,
+          maxZoom: 18,
+          zoomOffset: -1,
+          id: 'mapbox/outdoors-v11',
+          accessToken: ''
+          }).addTo(mymap);
 
           //VARIABLES
           var mymarker = [];//holds map points
@@ -221,6 +228,7 @@
                     document.getElementById('tblPlayer').style.visibility = 'hidden';//hide table
                     document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
                     $scope.countries = data;//countries for selected tournament returned from database, added to COUNTRIES combo box
+                    $scope.country = "";//clear selected coutnries
                     $scope.players = null;//clear selected players if a national team reviously chosen
                     $scope.clearData();//clear map points, close pop-up window
                     mymap.setView([0,0], 1);//zoom out
