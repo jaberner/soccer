@@ -5,9 +5,7 @@
            <title>FIFA Tournament Rosters</title>
            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-           <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
-   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
-   crossorigin=""/>
+     
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
    crossorigin=""></script>
@@ -124,13 +122,15 @@
           maxZoom: 18,
           zoomOffset: -1,
           id: 'mapbox/outdoors-v11',
-          accessToken: ''
+          accessToken: 'pk.eyJ1IjoiYmVybmVyamEwMSIsImEiOiJja2ljNHFmNGswZmtpMnlxeGU2d2U4OHBiIn0._A75W9xiclQQwU3iQ9MgHg'
           }).addTo(mymap);
 
           //VARIABLES
+         
           var mymarker = [];//holds map points
           var markers = L.markerClusterGroup({maxClusterRadius: 2});
           var marker = L.marker();
+          
           var lat_lon = [];//holds latitude/longitude values
           numMapPointsDisplayed = 0;//counter for the point currently displayed on the map corresponding to each respective player on a roster
           numPlayersRoster = 23;//total number of players on each team
@@ -263,7 +263,7 @@
                       if($scope.MapPointType === "birthplaces"){//if BIRTHPLACES chosen ->
                         player_birthplace = new MapCoordinate($scope.players[i][26], $scope.players[i][27]);//new MapCoordinate object to hold birthplace x,y
                         //mymarker[numMapPointsDisplayed] = L.marker([player_birthplace.x, player_birthplace.y]).addTo(mymap);//LEAFLET: add marker to map for birthplace
-                        var name = $scope.players[i][1];//for popup on click
+                        var name = $scope.players[i][1] + "  - " + $scope.players[i][23] + ", " + $scope.players[i][29];//for popup on click
                         var marker = L.marker([player_birthplace.x, player_birthplace.y], {name: name});
                         marker.bindPopup(name);
                         markers.addLayer(marker);//LEAFLET: add marker to map for birthplace
@@ -272,7 +272,7 @@
                       if($scope.MapPointType === "clubs"){//if CLUBS chosen ->
                           club_location = new MapCoordinate($scope.players[i][20], $scope.players[i][21]);//new MapCoordinate object to hold club location x,y
                           //mymarker[numMapPointsDisplayed] = L.marker([club_location.x, club_location.y]).addTo(mymap);//LEAFLET: add marker to map for club location
-                          var name = $scope.players[i][1];//for popup on click
+                          var name = $scope.players[i][1] + "  - " + $scope.players[i][13];//for popup on click
                           marker = L.marker([club_location.x, club_location.y], {name: name});
                           marker.bindPopup(name);
                           markers.addLayer(marker);//LEAFLET: add marker to map for birthplace
