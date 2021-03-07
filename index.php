@@ -263,8 +263,9 @@
                       if($scope.MapPointType === "birthplaces"){//if BIRTHPLACES chosen ->
                         player_birthplace = new MapCoordinate($scope.players[i][26], $scope.players[i][27]);//new MapCoordinate object to hold birthplace x,y
                         //mymarker[numMapPointsDisplayed] = L.marker([player_birthplace.x, player_birthplace.y]).addTo(mymap);//LEAFLET: add marker to map for birthplace
-                        var name = $scope.players[i][1] + "  - " + $scope.players[i][23] + ", " + $scope.players[i][29];//for popup on click
-                        var marker = L.marker([player_birthplace.x, player_birthplace.y], {name: name});
+                        var name = $scope.players[i][1] + "<br />" + $scope.players[i][23] + ", " + $scope.players[i][29] + "<br /><img style='width:100px' src='" + imgPlayers + $scope.players[i][4] + "'>";
+                        //for popup on click
+                        var marker = L.marker([player_birthplace.x, player_birthplace.y], {name: name}).on('click', onClick);
                         marker.bindPopup(name);
                         markers.addLayer(marker);//LEAFLET: add marker to map for birthplace
                         lat_lon[i] = [player_birthplace.x, player_birthplace.y];//store coordinates for player's birthplace in global array
@@ -272,8 +273,8 @@
                       if($scope.MapPointType === "clubs"){//if CLUBS chosen ->
                           club_location = new MapCoordinate($scope.players[i][20], $scope.players[i][21]);//new MapCoordinate object to hold club location x,y
                           //mymarker[numMapPointsDisplayed] = L.marker([club_location.x, club_location.y]).addTo(mymap);//LEAFLET: add marker to map for club location
-                          var name = $scope.players[i][1] + "  - " + $scope.players[i][13];//for popup on click
-                          marker = L.marker([club_location.x, club_location.y], {name: name});
+                          var name = $scope.players[i][1] + "<br />" + $scope.players[i][13]+ "<br /><img style='width:100px' src='" + imgPlayers + $scope.players[i][4] + "'>";//for popup on click
+                          marker = L.marker([club_location.x, club_location.y], {name: name}).on('click', onClick);
                           marker.bindPopup(name);
                           markers.addLayer(marker);//LEAFLET: add marker to map for birthplace
                           lat_lon[i] = [club_location.x, club_location.y];//store coordinates for player's club location in global array
@@ -289,6 +290,12 @@
           }
 
 
+          function onClick(e){
+            document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information on the side
+          }
+
+
+
 
             //SELECT PLAYER combo box selection change
             $scope.selPlayer = function(){
@@ -297,7 +304,7 @@
                     $scope.selected = data;//selected player's info for selected tournament returned from database
                      if(($scope.selected).length != 1){//if query doesn't return ONE player ('<SELECT PLAYER>' clicked) -> close popup and hide player info/pic/logos
                       mymap.closePopup();//close popup
-                      document.getElementById('playerInfo').style.visibility = 'hidden';//hide pictures of players and their information
+                      
                       return;
             }     
             document.getElementById('playerInfo').style.visibility = 'visible';//make player info/pic/logos visible
